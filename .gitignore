@@ -40,3 +40,6 @@ captures/
 *.jks
 /.DS_Store
 /.idea
+.DS_Store
+*.DS_Store
+/app/src/main/res/.DS_Store
