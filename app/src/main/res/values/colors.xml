@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="message_incoming_text">#a7aab3</color>
+    <color name="message_incoming_bubble">#f3f3f3</color>
+
+    <color name="message_outgoing_text">#a7aab3</color>
+    <color name="message_outgoing_bubble">#ffffff</color>
+    <color name="message_outgoing_bubble_stroke">#e2e4e8</color>
+
+</resources>
