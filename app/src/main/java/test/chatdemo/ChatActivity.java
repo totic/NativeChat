@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
-    private RecyclerView listView;
+    private ListView listView;
     private View btnSend;
     private EditText editText;
     boolean isMine = true;
@@ -27,7 +27,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         chatMessages = new ArrayList<>();
 
-        listView = (RecyclerView) findViewById(R.id.list_msg);
+        listView = (ListView) findViewById(R.id.list_msg);
         btnSend = findViewById(R.id.btn_chat_send);
         editText = (EditText) findViewById(R.id.msg_type);
 
