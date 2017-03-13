@@ -2,7 +2,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="2dp"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/bubble_opposite_side_margin">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -16,7 +18,7 @@
             android:id="@+id/txt_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello world"
+            tools:text="I have a question about my bill. I think there might be errors"
             android:textColor="@color/message_incoming_text" />
     </LinearLayout>
 
