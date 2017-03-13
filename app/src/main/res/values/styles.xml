@@ -8,4 +8,43 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="bill_value">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/bill_value</item>
+    </style>
+
+    <style name="bill_small_value" parent="bill_value">
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="bill_large_value" parent="bill_value">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+
+    <style name="bill_label">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/bill_value</item>
+    </style>
+
+    <style name="bill_small_label"  parent="bill_label">
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="bill_large_label" parent="bill_label">
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+
+
 </resources>
