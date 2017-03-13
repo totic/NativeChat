@@ -1,0 +1,143 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:background="@drawable/border"
+    android:orientation="vertical"
+    android:paddingRight="25dp"
+    android:paddingLeft="25dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            style="@style/bill_small_label"
+            android:layout_weight="1"
+            android:text="@string/account_number"/>
+
+        <TextView
+            android:id="@+id/account_number"
+            style="@style/bill_small_value"
+            android:layout_weight="1"
+            tools:text="7283 23 9812389 21"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            style="@style/bill_small_label"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/product_price"/>
+
+        <TextView
+            android:id="@+id/product_price"
+            style="@style/bill_small_value"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            tools:text="60.85"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            style="@style/bill_small_label"
+            android:layout_weight="1"
+            android:text="@string/taxes_surcharges_amp_fees" />
+
+        <TextView
+            android:id="@+id/taxes"
+            style="@style/bill_small_value"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            tools:text="8.40" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/color_lines"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/bill_small_label"
+                android:layout_width="wrap_content"
+                android:text="@string/due_date"
+                android:textColor="@color/message_incoming_text" />
+
+            <TextView
+                android:id="@+id/due_date"
+                style="@style/bill_large_value"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                tools:text="02/26/16" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_lines"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/bill_small_label"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:text="@string/total_due"/>
+
+            <TextView
+                android:id="@+id/total"
+                style="@style/bill_large_value"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                tools:text="$135.20" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
