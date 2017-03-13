@@ -1,5 +1,6 @@
 package test.chatdemo;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,11 @@ public class ChatActivity extends AppCompatActivity {
         btnSend = findViewById(R.id.btn_chat_send);
         editText = (EditText) findViewById(R.id.msg_type);
 
-        //set ListView adapter first
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.chat_title);
+
+
+                //set ListView adapter first
         adapter = new MessageAdapter(this, R.layout.item_chat_outgoing, chatMessages);
         listView.setAdapter(adapter);
 
