@@ -12,10 +12,13 @@ public class ChatMessage {
     private Date date;
 
     public ChatMessage(String body, int messageType, Date date) {
-
         this.body = body;
         this.messageType = messageType;
         this.date = date;
+    }
+
+    public ChatMessage(String body, int messageType) {
+        this(body,messageType,new Date());
     }
 
     public boolean isBill() {
