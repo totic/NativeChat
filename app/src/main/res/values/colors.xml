@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#e2e4e8</color>
     <color name="colorPrimaryDark">#a7aab3</color>
     <color name="colorAccent">#a7aab3</color>
-
-    <color name="color_lines">@color/colorPrimary</color>
+    <color name="basePrimary">#e2e4e8</color>
+    <color name="basePrimaryDark">#a7aab3</color>
+    <color name="color_lines">@color/basePrimary</color>
 
     <color name="bill_value">#747474</color>
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="top_gradiant">#d2d2d2</color>
+
     <color name="message_incoming_text">#a7aab3</color>
     <color name="message_incoming_bubble">#f3f3f3</color>
 
     <color name="message_outgoing_text">@color/colorPrimaryDark</color>
     <color name="message_outgoing_bubble">#ffffff</color>
     <color name="message_outgoing_bubble_stroke">@color/color_lines</color>
-
 </resources>

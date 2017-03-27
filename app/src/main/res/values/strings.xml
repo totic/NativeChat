@@ -3,7 +3,7 @@
     <string name="chat_title">CHAT WITH US</string>
     <string name="account_number">Account Number:</string>
     <string name="product_price">Product Price</string>
-    <string name="taxes_surcharges_amp_fees">Taxes, surcharges &amp; fees></string>
+    <string name="taxes_surcharges_amp_fees">Taxes, surcharges &amp; fees</string>
     <string name="due_date">Due Date</string>
     <string name="total_due">Total due</string>
 </resources>
