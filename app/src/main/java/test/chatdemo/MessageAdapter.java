@@ -1,19 +1,18 @@
 package test.chatdemo;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,12 +21,17 @@ import test.chatdemo.views.BillView;
 public class MessageAdapter extends CursorAdapter {
 
     private Context context;
-    private boolean animated = false;
+    private boolean doAnimation = false;
+    private static final ScaleAnimation INCOMING_ANIMATION = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
+    private static final ScaleAnimation OUTGOING_ANIMATION = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_PARENT, 1, Animation.RELATIVE_TO_SELF , 1);
+    private ListView listView;
+    private int fullWidth;
 
-
-    public MessageAdapter(Context context, Cursor cursor) {
+    public MessageAdapter(Context context, Cursor cursor, ListView listView) {
         super(context, cursor, 0);
         this.context = context;
+        this.listView = listView;
+
     }
 
     @Override
@@ -36,21 +40,20 @@ public class MessageAdapter extends CursorAdapter {
 
         ChatMessage chatMessage = ChatMessage.getChatMessage(cursor);
         int layoutResource = 0;
-        int type = chatMessage.getMessageType();
 
-        if (type == MessageType.OUTGOING.getValue()) {
-            layoutResource = R.layout.item_chat_outgoing;}
+        if (chatMessage.isOutgoing()) {
+            layoutResource = R.layout.item_chat_outgoing;
 
-        else if (type == MessageType.INCOMING.getValue()) {
+        }else if (chatMessage.isIncoming()) {
             layoutResource = R.layout.item_chat_incoming;
 
-        } else if (type == MessageType.BILL.getValue()) {
+        } else if (chatMessage.isBill()) {
             layoutResource = R.layout.item_bill;
         }
 
         View view = LayoutInflater.from(context).inflate(layoutResource, parent, false);
 
-        if (chatMessage.getMessageType() != MessageType.BILL.getValue()) {
+        if (!chatMessage.isBill()) {
             ViewHolderMsg holder = new ViewHolderMsg(view);
             view.setTag(holder);
             holder.msg.setText(chatMessage.getBody());
@@ -64,7 +67,6 @@ public class MessageAdapter extends CursorAdapter {
             view = billView;
         }
 
-
         if(needsDate(position, chatMessage.getDate())){
             View dateView = LayoutInflater.from(context).inflate(R.layout.item_date, parent, false);
             TextView dateText = ButterKnife.findById(dateView,R.id.date_text);
@@ -73,7 +75,34 @@ public class MessageAdapter extends CursorAdapter {
             }
             view = addDate(context, view, dateView);
         }
+
+        if(doAnimation){
+            ScaleAnimation anim = null;
+            if (!chatMessage.isBill()) {
+                if(chatMessage.isIncoming()){
+                    anim = INCOMING_ANIMATION;
+                }else if(chatMessage.isOutgoing()){
+                    anim = OUTGOING_ANIMATION;
+                }
+                anim.setDuration(500);
+                view.startAnimation(anim);
+            }else {
+                if(this.fullWidth  == 0 ){
+                    this.fullWidth =this.listView.getWidth();
+                }
+                ((BillView)view).animateBill(this.fullWidth);
+            }
+            doAnimation = false;
+        }else{
+            if(chatMessage.isBill()){
+                ((BillView)view).displayBill();
+            }
+        }
         return view;
+    }
+
+    public void setDoAnimated(boolean animated){
+        this.doAnimation = animated;
     }
 
     private int getItemViewType(Cursor cursor) {

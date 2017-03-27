@@ -61,7 +61,7 @@ public class DBMessageHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_BODY, message.getBody());
-        values.put(COLUMN_MESSAGE_TYPE, message.getMessageType());
+        values.put(COLUMN_MESSAGE_TYPE, message.getMessageType().getValue());
         values.put(COLUMN_TIMESTAMP, new Date().getTime());
         db.insert(TABLE_MESSAGES, null, values);
         db.close(); // Closing database connection

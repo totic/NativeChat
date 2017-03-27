@@ -1,29 +1,14 @@
 package test.chatdemo;
 
 import android.app.Activity;
-import android.content.ContentValues;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,10 +21,10 @@ public class ChatActivity extends Activity {
     private DBMessageHandler handler;
     private Handler msghandler = new Handler();
 
-    private final Pattern patternBill = Pattern.compile(".*\\bbill(s?)\\b.*",Pattern.DOTALL|Pattern.CASE_INSENSITIVE);
+    private final Pattern PATTERN_BILL = Pattern.compile(".*\\bbill(s?)\\b.*",Pattern.DOTALL|Pattern.CASE_INSENSITIVE);
 
     @BindView(R.id.list_msg) ListView listView;
-    @BindView(R.id.btn_chat_send) Button btnSend;
+    @BindView(R.id.btn_chat_send) Button sendBtn;
     @BindView(R.id.msg_type) EditText editText;
 
     @Override
@@ -49,45 +34,43 @@ public class ChatActivity extends Activity {
         ButterKnife.bind(this);
 
         handler = new DBMessageHandler(this);
-        adapter = new MessageAdapter(this, handler.getCursor());
+        adapter = new MessageAdapter(this, handler.getCursor(),listView);
         listView.setAdapter(adapter);
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
+        sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editText.getText().toString().trim().length()==0) {
                     Toast.makeText(ChatActivity.this, R.string.input_text, Toast.LENGTH_SHORT).show();
                 } else {
                     String msg = editText.getText().toString();
-                    Matcher m = patternBill.matcher(msg);
+                    Matcher m = PATTERN_BILL.matcher(msg);
+                    addMessages(new ChatMessage(msg, MessageType.OUTGOING));
                     if(!m.find()){
-                        handler.addMessage(new ChatMessage(msg, MessageType.OUTGOING.getValue()));
-                        sendIncomingMsg(msg);
+                        sendIncomingMsgWithDelay(new ChatMessage(msg, MessageType.INCOMING), 1000);
                     }else{
-                        handler.addMessage(new ChatMessage(msg, MessageType.OUTGOING.getValue()));
-                        handler.addMessage(new ChatMessage(msg, MessageType.BILL.getValue()));
+                        sendIncomingMsgWithDelay(new ChatMessage(getString(R.string.current_statement_header), MessageType.INCOMING), 1000);
+                        sendIncomingMsgWithDelay(new ChatMessage(null, MessageType.BILL), 1500);
                     }
-                    adapter.swapCursor(handler.getCursor());
-                    adapter.notifyDataSetChanged();
                     editText.setText("");
                 }
             }
         });
     }
 
-    public void sendIncomingMsgWithDelay(final String msg) {
-        Runnable runnable = new Runnable() {
-            public void run() {
-                handler.addMessage(new ChatMessage(msg, MessageType.INCOMING.getValue(), new Date()));
-                Cursor cursor = handler.getCursor();
-                adapter.swapCursor(cursor);
-                adapter.notifyDataSetChanged();
-            }
-        };
-        msghandler.postDelayed(runnable, 3000);
+    public void addMessages(ChatMessage message){
+        handler.addMessage(message);
+        adapter.swapCursor(handler.getCursor());
+        adapter.notifyDataSetChanged();
+        adapter.setDoAnimated(true);
     }
 
-    public void sendIncomingMsg(final String msg) {
-        handler.addMessage(new ChatMessage(msg, MessageType.INCOMING.getValue(), new Date()));
+    public void sendIncomingMsgWithDelay(final ChatMessage message, int time) {
+        Runnable runnable = new Runnable() {
+            public void run() {
+                addMessages(message);
+            }
+        };
+        msghandler.postDelayed(runnable, time);
     }
 }

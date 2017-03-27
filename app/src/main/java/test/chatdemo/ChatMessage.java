@@ -8,31 +8,37 @@ public class ChatMessage {
 
 
     private String body;
-    private int messageType;
+    private MessageType messageType;
     private Date date;
 
-    public ChatMessage(String body, int messageType, Date date) {
+
+    public ChatMessage(String body, MessageType messageType, Date date) {
         this.body = body;
         this.messageType = messageType;
         this.date = date;
     }
 
-    public ChatMessage(String body, int messageType) {
-        this(body,messageType,new Date());
+    public ChatMessage(String body, MessageType messageType) {
+        this(body, messageType, new Date());
     }
 
     public boolean isBill() {
-        return messageType == MessageType.BILL.getValue();
+        return messageType == MessageType.BILL;
     }
-    public boolean isMine() {
-        return messageType == MessageType.OUTGOING.getValue();
+
+    public boolean isOutgoing() {
+        return messageType == MessageType.OUTGOING;
+    }
+
+    public boolean isIncoming() {
+        return messageType == MessageType.INCOMING;
     }
 
     public String getBody() {
         return body;
     }
 
-    public int getMessageType() {
+    public MessageType getMessageType() {
         return messageType;
     }
 
@@ -44,7 +50,8 @@ public class ChatMessage {
         int type = cursor.getInt(cursor.getColumnIndexOrThrow(DBMessageHandler.COLUMN_MESSAGE_TYPE));
         String body = cursor.getString(cursor.getColumnIndexOrThrow(DBMessageHandler.COLUMN_BODY));
         Date date = new Date(cursor.getLong(cursor.getColumnIndexOrThrow(DBMessageHandler.COLUMN_TIMESTAMP)));
-        return new ChatMessage(body, type, date);
+        MessageType messageType = MessageType.fromValue(type);
+        return new ChatMessage(body, messageType, date);
     }
 
 }
