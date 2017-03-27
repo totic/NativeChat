@@ -17,7 +17,7 @@
     </style>
 
     <style name="bill_small_value" parent="bill_value">
-        <item name="android:textSize">13dp</item>
+        <item name="android:textSize">12dp</item>
     </style>
 
     <style name="bill_large_value" parent="bill_value">
@@ -38,6 +38,7 @@
     <style name="bill_small_label"  parent="bill_label">
         <item name="android:paddingRight">10dp</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">12dp</item>
     </style>
 
     <style name="bill_large_label" parent="bill_label">

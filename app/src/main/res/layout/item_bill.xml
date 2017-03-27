@@ -31,7 +31,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:background="@color/colorPrimary"/>
@@ -45,15 +45,15 @@
         <TextView
             style="@style/bill_small_label"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.4"
             android:text="@string/product_price"/>
 
         <TextView
             android:id="@+id/product_price"
             style="@style/bill_small_value"
             android:layout_width="0dp"
-            android:layout_weight="0.7"
-            android:gravity="center"
+            android:layout_weight="0.5"
+            android:gravity="left"
             tools:text="$60.85"/>
 
     </LinearLayout>
@@ -66,21 +66,21 @@
 
         <TextView
             style="@style/bill_small_label"
-            android:layout_weight="1"
+            android:layout_weight="1.4"
             android:text="@string/taxes_surcharges_amp_fees" />
 
         <TextView
             android:id="@+id/taxes"
             style="@style/bill_small_value"
             android:layout_width="0dp"
-            android:layout_weight="0.7"
-            android:gravity="center"
+            android:layout_weight="0.5"
+            android:gravity="left"
             tools:text="$8.40" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:background="@color/color_lines"/>
@@ -91,7 +91,6 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,19 +100,21 @@
             <TextView
                 style="@style/bill_small_label"
                 android:layout_width="wrap_content"
+                android:layout_marginBottom="-5dp"
                 android:text="@string/due_date"
-                android:textColor="@color/message_incoming_text" />
+                android:textColor="@color/message_incoming_text"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/due_date"
                 style="@style/bill_large_value"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
-                tools:text="02/26/16" />
+                tools:text="02/26/16"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <View
-            android:layout_width="2dp"
+            android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/color_lines"/>
 
@@ -127,6 +128,7 @@
             <TextView
                 android:id="@+id/textView"
                 style="@style/bill_small_label"
+                android:layout_marginBottom="-5dp"
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:text="@string/total_due"/>
@@ -139,5 +141,4 @@
                 tools:text="$135.20" />
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
