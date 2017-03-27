@@ -7,17 +7,15 @@
     android:paddingTop="2dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:background="@drawable/bubble_incoming_shape"
-        android:padding="15dp"
-        android:orientation="vertical">
+        style="@style/bubbles">
 
         <TextView
             android:id="@+id/txt_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="right"
             tools:text="I have a question about my bill. I think there might be errors"
             android:textColor="@color/message_incoming_text" />
     </LinearLayout>

@@ -7,4 +7,5 @@
     <string name="due_date">Due Date</string>
     <string name="total_due">Total due</string>
     <string name="input_text">Please input some text...</string>
+    <string name="current_statement_header">Here is your current statement:</string>
 </resources>

@@ -6,7 +6,7 @@
     <color name="colorAccent">#a7aab3</color>
     <color name="basePrimary">#e2e4e8</color>
     <color name="basePrimaryDark">#a7aab3</color>
-    <color name="color_lines">@color/basePrimary</color>
+    <color name="color_lines">@color/colorPrimaryDark</color>
 
     <color name="bill_value">#747474</color>
     <color name="black">#000</color>
