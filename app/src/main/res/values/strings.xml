@@ -6,4 +6,5 @@
     <string name="taxes_surcharges_amp_fees">Taxes, surcharges &amp; fees</string>
     <string name="due_date">Due Date</string>
     <string name="total_due">Total due</string>
+    <string name="input_text">Please input some text...</string>
 </resources>
