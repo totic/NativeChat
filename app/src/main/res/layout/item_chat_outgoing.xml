@@ -3,24 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/bubble_opposite_side_margin"
-    android:padding="2dp">
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/bubble_outgoing_shape"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bubble_incoming_shape"
+        android:padding="15dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txt_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/message_outgoing_text"
-            tools:text="Here is your current statement:"/>
+            tools:text="I have a question about my bill. I think there might be errors"
+            android:textColor="@color/message_incoming_text" />
     </LinearLayout>
 
 </RelativeLayout>
