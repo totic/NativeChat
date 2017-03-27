@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
     android:paddingBottom="2dp"
     android:paddingTop="2dp">
 
     <LinearLayout
         android:layout_alignParentRight="true"
-        android:background="@drawable/bubble_incoming_shape"
+        android:background="@drawable/bubble_outgoing_shape"
         style="@style/bubbles">
 
         <TextView
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             tools:text="I have a question about my bill. I think there might be errors"
-            android:textColor="@color/message_incoming_text" />
+            android:textColor="@color/message_outgoing_text" />
     </LinearLayout>
 
 </RelativeLayout>

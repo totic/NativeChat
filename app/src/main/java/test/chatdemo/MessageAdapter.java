@@ -21,7 +21,7 @@ import test.chatdemo.views.BillView;
 public class MessageAdapter extends CursorAdapter {
 
     private Context context;
-    private boolean doAnimation = false;
+    private int animationCount = 0;
     private static final ScaleAnimation INCOMING_ANIMATION = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
     private static final ScaleAnimation OUTGOING_ANIMATION = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_PARENT, 1, Animation.RELATIVE_TO_SELF , 1);
     private ListView listView;
@@ -31,13 +31,13 @@ public class MessageAdapter extends CursorAdapter {
         super(context, cursor, 0);
         this.context = context;
         this.listView = listView;
-
+        animationCount = cursor.getCount();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Cursor cursor = (Cursor)getItem(position);
-
+        //Pick correct layout
         ChatMessage chatMessage = ChatMessage.getChatMessage(cursor);
         int layoutResource = 0;
 
@@ -53,6 +53,7 @@ public class MessageAdapter extends CursorAdapter {
 
         View view = LayoutInflater.from(context).inflate(layoutResource, parent, false);
 
+        //Load data
         if (!chatMessage.isBill()) {
             ViewHolderMsg holder = new ViewHolderMsg(view);
             view.setTag(holder);
@@ -67,6 +68,7 @@ public class MessageAdapter extends CursorAdapter {
             view = billView;
         }
 
+        //Add date if needed
         if(needsDate(position, chatMessage.getDate())){
             View dateView = LayoutInflater.from(context).inflate(R.layout.item_date, parent, false);
             TextView dateText = ButterKnife.findById(dateView,R.id.date_text);
@@ -75,8 +77,8 @@ public class MessageAdapter extends CursorAdapter {
             }
             view = addDate(context, view, dateView);
         }
-
-        if(doAnimation){
+        //Do animations
+        if(animationCount < position){
             ScaleAnimation anim = null;
             if (!chatMessage.isBill()) {
                 if(chatMessage.isIncoming()){
@@ -84,7 +86,7 @@ public class MessageAdapter extends CursorAdapter {
                 }else if(chatMessage.isOutgoing()){
                     anim = OUTGOING_ANIMATION;
                 }
-                anim.setDuration(500);
+                anim.setDuration(context.getResources().getInteger(R.integer.animation_messages));
                 view.startAnimation(anim);
             }else {
                 if(this.fullWidth  == 0 ){
@@ -92,7 +94,7 @@ public class MessageAdapter extends CursorAdapter {
                 }
                 ((BillView)view).animateBill(this.fullWidth);
             }
-            doAnimation = false;
+            animationCount = position;
         }else{
             if(chatMessage.isBill()){
                 ((BillView)view).displayBill();
@@ -101,9 +103,6 @@ public class MessageAdapter extends CursorAdapter {
         return view;
     }
 
-    public void setDoAnimated(boolean animated){
-        this.doAnimation = animated;
-    }
 
     private int getItemViewType(Cursor cursor) {
         return cursor.getInt(cursor.getColumnIndex(DBMessageHandler.COLUMN_MESSAGE_TYPE))+1;

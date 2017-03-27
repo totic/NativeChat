@@ -3,5 +3,6 @@
     <integer name="animation_bill_start">1000</integer>
     <integer name="animation_bill_mid">500</integer>
     <integer name="animation_bill_end">500</integer>
+    <integer name="animation_messages">500</integer>
 
 </resources>

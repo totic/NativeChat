@@ -1,71 +1,85 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/top"
-        android:orientation="vertical"
-        android:background="@drawable/header_gradiant"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_gradiant"
+        android:orientation="vertical">
 
         <TextView
+            style="@style/chat_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/chat_title"
-            style="@style/chat_title"/>
+            android:text="@string/chat_title"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="4px"
             android:background="@color/basePrimaryDark"/>
-
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/send_body"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/msg_type"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.75"
-            android:textColor="@color/colorPrimaryDark"
-            android:inputType="textCapSentences|textMultiLine"
-            android:maxLines="4"
-            android:hint="Input message" />
+        <LinearLayout
+            android:id="@+id/layout_send_message_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_chat_send"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25"
-            android:maxWidth="50dp"
-            android:maxHeight="40dp"
-            android:imeOptions="actionDone"
-            android:background="@color/background_floating_material_dark"
-            android:text="Send"
-            android:textColor="@color/background_material_light" />
+            <EditText
+                android:id="@+id/msg_type"
+                style="@style/conversation_composed_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bubble_outgoing_shape"
+                android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimaryDark"
+                tools:text="Sending a message what about a very long message?? Sending a message what about a very long message? Sending a message what about a very long message?" />
+
+            <Button
+                android:id="@+id/btn_chat_send"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="0.25"
+                android:background="@color/background_floating_material_dark"
+                android:text="@string/send"
+                android:textColor="@color/background_material_light"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/chat_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/top"
         android:layout_above="@id/send_body"
+        android:layout_below="@id/top"
         android:orientation="vertical"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin">
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
         <ListView
             android:id="@+id/list_msg"

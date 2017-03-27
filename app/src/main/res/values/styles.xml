@@ -25,6 +25,26 @@
         <item name="android:textSize">16dp</item>
     </style>
 
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splashy</item>
+    </style>
+
+
+    <style name="conversation_composed_text">
+        <item name="android:singleLine">false</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:minHeight">42dp</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:background">@null</item>
+        <item name="android:scrollHorizontally">false</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:inputType">textShortMessage|textAutoCorrect|textCapSentences|textMultiLine</item>
+    </style>
+
 
     <style name="bill_label">
         <item name="android:fontFamily">sans-serif-light</item>

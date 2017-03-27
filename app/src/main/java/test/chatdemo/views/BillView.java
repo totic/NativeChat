@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import java.lang.reflect.Method;
 
+import butterknife.ButterKnife;
 import test.chatdemo.R;
 
 /**
@@ -51,15 +52,16 @@ public class BillView extends LinearLayout {
 
     private void init(Context context) {
         rootView = inflate(context, R.layout.item_bill, this);
-        this.accountNumber =  (TextView)rootView.findViewById(R.id.account_number);
-        this.price =          (TextView)rootView.findViewById(R.id.product_price);
-        this.taxes =          (TextView)rootView.findViewById(R.id.taxes);
-        this.dueDate =        (TextView)rootView.findViewById(R.id.due_date);
-        this.total =          (TextView)rootView.findViewById(R.id.total);
-        this.frameLayout =    (FrameLayout)rootView.findViewById(R.id.frame_bill);
-        this.fullLayout=      (LinearLayout)rootView.findViewById(R.id.all_bill);
-        this.topLayout =      (LinearLayout)rootView.findViewById(R.id.top_bill);
-        this.bottomLayout=    (LinearLayout)rootView.findViewById(R.id.bottom_bill);
+
+        this.accountNumber =  ButterKnife.findById(rootView,R.id.account_number);
+        this.price =          ButterKnife.findById(rootView,R.id.product_price);
+        this.taxes =          ButterKnife.findById(rootView,R.id.taxes);
+        this.dueDate =        ButterKnife.findById(rootView,R.id.due_date);
+        this.total =          ButterKnife.findById(rootView,R.id.total);
+        this.frameLayout =    ButterKnife.findById(rootView,R.id.frame_bill);
+        this.fullLayout=      ButterKnife.findById(rootView,R.id.all_bill);
+        this.topLayout =      ButterKnife.findById(rootView,R.id.top_bill);
+        this.bottomLayout=    ButterKnife.findById(rootView,R.id.bottom_bill);
     }
 
     public void setAccountNumber(String accountNumber) {
