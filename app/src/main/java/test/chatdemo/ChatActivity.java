@@ -1,6 +1,7 @@
 package test.chatdemo;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Handler;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,7 @@ public class ChatActivity extends Activity {
         handler = new DBMessageHandler(this);
         adapter = new MessageAdapter(this, handler.getCursor(),listView);
         listView.setAdapter(adapter);
+        listView.setSelection(adapter.getCount()-1);
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +64,6 @@ public class ChatActivity extends Activity {
         handler.addMessage(message);
         adapter.swapCursor(handler.getCursor());
         adapter.notifyDataSetChanged();
-        adapter.setDoAnimated(true);
     }
 
     public void sendIncomingMsgWithDelay(final ChatMessage message, int time) {
